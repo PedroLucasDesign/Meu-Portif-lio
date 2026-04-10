@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galeria de Projetos | Visual Arts</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:ital,wght@0,700;0,900;1,800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* VARIÁVEIS E CORES */
+        :root {
+            --bg-dark: #0a0a0a;
+            --bg-graphite: #1a1a1a;
+            --text-beige: #eae7dc;
+            --accent-red: #e63946;
+            --overlay-rgba: rgba(230, 57, 70, 0.9);
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        /* RESET E BASE */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-beige);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* BOTÃO VOLTAR */
+        .back-nav {
+            padding: 40px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .btn-back {
+            color: var(--text-beige);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            border: 1px solid rgba(234, 231, 220, 0.2);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent-red);
+            border-color: var(--accent-red);
+            transform: translateX(-5px);
+        }
+
+        /* CABEÇALHOS DE SEÇÃO */
+        .section-header {
+            margin-bottom: 40px;
+            border-left: 4px solid var(--accent-red);
+            padding-left: 20px;
+        }
+
+        .section-header h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            color: #fff;
+        }
+
+        .section-header p {
+            color: var(--accent-red);
+            font-weight: 500;
+            letter-spacing: 1px;
+            opacity: 0.9;
+        }
+
+        /* GRID SISTEMA */
+        section {
+            padding: 80px 0;
+        }
+
+        .gallery-grid {
+            display: grid;
+            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        /* CARDS DE ARTE */
+        .art-card {
+            position: relative;
+            background-color: var(--bg-graphite);
+            border-radius: 4px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            cursor: pointer;
+        }
+
+        .art-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        /* OVERLAY DE FERRAMENTAS */
+        .art-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--overlay-rgba);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: var(--transition);
+            backdrop-filter: blur(5px);
+        }
+
+        .art-card:hover .art-overlay {
+            opacity: 1;
+        }
+
+        .art-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .tools-list {
+            text-align: center;
+        }
+
+        .tools-list span {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+        }
+
+        .tools-list p {
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+        }
+
+        /* SEÇÃO ESPECÍFICA: STREETWEAR & MUSIC (Destaque maior) */
+        .streetwear-grid {
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        }
+
+        .art-card.landscape {
+            aspect-ratio: 4/5;
+            
+        }
+
+        /* SEÇÃO ESPECÍFICA: SPORTS DESIGN (Estilo agressivo) */
+        .sports-card {
+            border-bottom: 5px solid var(--accent-red);
+        }
+
+        .sports-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-style: italic;
+            font-weight: 900;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 768px) {
+            .section-header h2 {
+                font-size: 1.8rem;
+            }
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+            .streetwear-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- NAVEGAÇÃO -->
+        <nav class="back-nav">
+            <a href="index.html" class="btn-back">
+                <span>←</span> VOLTAR PARA HOME
+            </a>
+        </nav>
+
+        <!-- SEÇÃO 1: DESIGN COMERCIAL -->
+        <section id="comercial">
+            <div class="section-header">
+                <h2>Design Comercial & Social Media</h2>
+                <p>Foco em estética de luxo, gastronomia e conversão de vendas.</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Card Perfume -->
+                <article class="art-card">
+                    <img src="img/Treino10feed.jpg" alt="Design Perfume Luxo">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Ferramentas</span>
+                            <p>CANVA PRO / CAMERA RAW</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Card Food -->
+                <article class="art-card">
+                    <img src="img/SABOR DA PRAÇA.jpg" alt="Design Gastronomia">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Ferramentas</span>
+                            <p>CANVA PRO / LIGHTROOM</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Card Branding -->
+                <article class="art-card">
+                    <img src="img/Treino08.jpg" alt="Social Media Ads">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Ferramentas</span>
+                            <p>CANVA PRO / ILLUSTRATOR</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 2: STREETWEAR & MUSIC -->
+        <section id="music">
+            <div class="section-header">
+                <h2>Streetwear & Cover Art</h2>
+                <p>Estética urbana, manipulação de imagem e identidade visual para artistas.</p>
+            </div>
+            <div class="gallery-grid streetwear-grid">
+                <!-- Capa de Álbum Destaque -->
+                <article class="art-card landscape">
+                    <img src="img/NESK 2.0.jpg" alt="Cover Art">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Estilo Dirty Design</span>
+                            <p>CANVA PRO / TEXTURE LABS</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Arte Urbana -->
+                <article class="art-card landscape">
+                    <img src="img/PORSCHE.jpg" alt="Streetwear Design">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Manipulação</span>
+                            <p>CANVA PRO / AFTER EFFECTS</p>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- SEÇÃO 3: SPORTS DESIGN -->
+        <section id="sports">
+            <div class="section-header">
+                <h2>Design Esportivo</h2>
+                <p>Criação de materiais para clubes e atletas, focando em impacto e energia.</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Match Day 1 -->
+                <article class="art-card sports-card">
+                    <img src="img/MATCH DAY.jpg" alt="Match Day Design">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Match Day</span>
+                            <p>CANVA PRO (RECORTE AVANÇADO)</p>
+                        </div>
+                    </div>
+                </article>
+                <!-- Atleta Card -->
+                <article class="art-card sports-card">
+                    <img src="img/BEM VINDO.jpg" alt="Athlete Poster">
+                    <div class="art-overlay">
+                        <div class="tools-list">
+                            <span>Tipografia</span>
+                            </div>
+                            
+
+                            

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Profissional</title>
+    <!-- Fontes: Inter e Montserrat -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Montserrat:wght@700;800&display=swap" rel="stylesheet">
+    <link rel="icon" href="img/icon.png">
+    
+    <style>
+        /* VARIÁVEIS E RESET */
+        :root {
+            --primary-bg: #172123;
+            --secondary-bg: #0b1112;
+            --accent-color: #3498db;
+            --text-main: #ffffff;
+            --text-secondary: #a0a0a0;
+            --card-bg: #1e2a2d;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--primary-bg);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent-color);
+            color: white;
+            border-radius: 4px;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            border: 2px solid var(--accent-color);
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-color);
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(23, 33, 35, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 80px;
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        /* HERO SECTION */
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1e2d30 0%, #172123 100%);
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* SOBRE MIM */
+        section {
+            padding: 100px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 50px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+
+        .about-image {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            justify-self: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            filter: grayscale(100%);
+            transition: var(--transition);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent-color);
+            z-index: -1;
+            border-radius: 8px;
+        }
+
+        .about-image:hover img {
+            filter: grayscale(0%);
+            transform: translate(-10px, -10px);
+        }
+
+        /* PORTFÓLIO */
+        #portfolio {
+            background-color: var(--secondary-bg);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: var(--transition);
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .card-image {
+            height: 220px;
+            background-color: #2c3e50;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Placeholder de imagem com degradê */
+        .card-image::before {
+            content: 'Project Preview';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: rgba(255,255,255,0.2);
+            background: linear-gradient(45deg, #1e2a2d, #3498db33);
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .card-content h3 {
+            margin-bottom: 10px;
+            font-size: 1.2rem;
+        }
+
+        .card-content p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        /* RODAPÉ */
+        footer {
+            background-color: var(--secondary-bg);
+            padding: 60px 0;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            text-align: center;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        .copyright {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 968px) {
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+            .about-image {
+                order: -1;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none; /* Oculto para simplificação nesta LP */
+            }
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">DESIGN<span>PORTFOLIO</span></div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#portfolio">Portfólio</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>DESIGNER VISUAL & DEVELOPER</h1>
+                <p>Criando identidades marcantes, do design esportivo ao comercial. Unindo estética e funcionalidade para elevar o nível do seu projeto.</p>
+                <a href="#portfolio" class="btn">Ver Projetos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SOBRE MIM -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">Sobre Mim</h2>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p>Olá! Sou um designer gráfico em constante evolução, focado em transformar ideias em impacto visual.</p>
+                    <p>Meu trabalho transita entre o design comercial para social media, a estética urbana e a força do design esportivo.</p>
+                    <p>Unindo minha base em TI com a criatividade visual, busco entregar projetos que não apenas sejam bonitos, mas que comuniquem a essência de cada marca ou artista.</p>
+                    <div style="margin-top: 30px;">
+                        <a href="#contato" class="btn" style="background: transparent; border-color: var(--text-main);">Saiba mais</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <!-- Placeholder de Imagem -->
+                    <img src="img/Gemini_Generated_Image_1fecks1fecks1fec.png" alt="Minha Foto">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PORTFÓLIO -->
+    <section id="portfolio">
+        <div class="container">
+            <h2 class="section-title">Projetos em Destaque</h2>
+            <div class="portfolio-grid">
+                
+                <!-- Card 1 -->
+                <article class="card">
+                    <div class="card-image">
+                        <img src="img/SABOR DA PRAÇA.jpg" alt="" width="100%">
+                    </div>
+                    <div class="card-content">
+                        <h3>Plataforma E-commerce</h3>
+                        <p>Interface responsiva focada em conversão para uma loja de alta performance ou setor de food service.</p>
+                        <a href="verDetl.html" style="color: var(--accent-color); font-weight: 600;">Ver Detalhes →</a>
+                    </div>
+                </article>
+
+                <!-- Card 2 -->
+                <article class="card">
+                    <div class="card-image"><img src="img/NESK 2.0.jpg" alt="" width="100%"></div>
+                    <div class="card-content">
+                        <h3>Cover Art</h3>
+                        <p>Artes estilo Streetwear Design, focado na elegância e simplicidade.</p>
+                        <a href="verDetl.html" style="color: var(--accent-color); font-weight: 600;">Ver Detalhes →</a>
+                    </div>
+                </article>
+
+                <!-- Card 3 -->
+                <article class="card">
+                    <div class="card-image"><img src="img/MATCH DAY.jpg" alt="" width="100%"></div>
+                    <div class="card-content">
+                        <h3>Card Esportivo</h3>
+                        <p>Criação de arte para divulgação de partida de futebol com foco em composição de camadas.</p>
+                        <a href="verDetl.html" style="color: var(--accent-color); font-weight: 600;">Ver Detalhes →</a>
+                    </div>
+                </article>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTATO / FOOTER -->
+    <footer id="contato">
+        <div class="container">
+            <h2 class="section-title" style="margin-bottom: 30px;">Vamos conversar?</h2>
+            <p style="margin-bottom: 40px; color: var(--text-secondary);">Disponível para novos projetos e colaborações.</p>
+            
+            <div class="social-links">
+                <a href="#">LinkedIn</a>
+                <a href="#">GitHub</a>
+                <a href="#">Twitter</a>
+                <a href="https://www.instagram.com/pedrol_sb/">Instagram</a>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2023 Pedro Lucas. Todos os direitos reservados. Design by.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
